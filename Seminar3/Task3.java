@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson3;
+package Seminar3;
 
 import java.util.Random;
 
@@ -7,12 +7,11 @@ public class Task3 {
     public static void main(String[] args) {
 
         Random random = new Random();
-        try
-        {
+        try {
             Animal cat1 = new Cat("Персик");
             Animal cat2 = new Cat("Барсик");
 
-            Animal[] animals = new Animal[]{cat1, cat2};
+            Animal[] animals = new Animal[] { cat1, cat2 };
 
             for (int i = 0; i < animals.length; i++) {
                 for (int j = 0; j < 10; j++) {
@@ -29,21 +28,22 @@ public class Task3 {
                             }
                         }
                     } catch (AnimalSwimException e) {
-                        System.out.printf("Ошибка при попытке %s проплыть %d метров. (%s)\n", e.getName(), e.getDistance(), e.getMessage());
+                        System.out.printf("Ошибка при попытке %s проплыть %d метров. (%s)\n", e.getName(),
+                                e.getDistance(), e.getMessage());
                     } catch (AnimalRunException e) {
-                        System.out.printf("Ошибка при попытке %s пробежать %d метров. (%s)\n", e.getName(), e.getDistance(), e.getMessage());
+                        System.out.printf("Ошибка при попытке %s пробежать %d метров. (%s)\n", e.getName(),
+                                e.getDistance(), e.getMessage());
                     }
                 }
             }
-        }
-        catch (AnimalNameException e){
+        } catch (AnimalNameException e) {
             System.out.println(e.getMessage());
         }
     }
 
 }
 
-abstract class Animal{
+abstract class Animal {
 
     protected String name;
 
@@ -65,8 +65,7 @@ abstract class Animal{
 
 }
 
-class Cat extends Animal{
-
+class Cat extends Animal {
 
     public Cat(String name) throws AnimalNameException {
         super(name);
@@ -82,12 +81,12 @@ class Cat extends Animal{
         if (distance > 50)
             throw new AnimalRunException("Кот не умеет далеко бегать.", name, distance);
 
-        //TODO: Выполняем дальнейшие инструкции нашего метода ...
+        // TODO: Выполняем дальнейшие инструкции нашего метода ...
     }
 
 }
 
-class AnimalNameException extends Exception{
+class AnimalNameException extends Exception {
 
     private String name;
 
@@ -101,7 +100,7 @@ class AnimalNameException extends Exception{
     }
 }
 
-abstract class AnimalActionException extends AnimalNameException{
+abstract class AnimalActionException extends AnimalNameException {
 
     private int distance;
 
@@ -116,14 +115,14 @@ abstract class AnimalActionException extends AnimalNameException{
 
 }
 
-class AnimalRunException extends AnimalActionException{
+class AnimalRunException extends AnimalActionException {
 
     public AnimalRunException(String message, String name, int distance) {
         super(message, name, distance);
     }
 }
 
-class AnimalSwimException extends AnimalActionException{
+class AnimalSwimException extends AnimalActionException {
 
     public AnimalSwimException(String message, String name, int distance) {
         super(message, name, distance);

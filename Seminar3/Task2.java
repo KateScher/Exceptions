@@ -1,27 +1,26 @@
-package ru.geekbrains.lesson3;
+package Seminar3;
 
 import java.io.IOException;
 
 public class Task2 {
 
     /**
-     Создайте класс Счетчик, у которого есть метод add(), увеличивающий
-     значение внутренней int переменной на 1. Сделайте так, чтобы с объектом
-     такого типа можно было работать в блоке try-with-resources. Подумайте, что
-     должно происходить при закрытии этого ресурса? Напишите метод для
-     проверки, закрыт ли ресурс. При попытке вызвать add() у закрытого
-     ресурса, должен выброситься IOException.
+     * Создайте класс Счетчик, у которого есть метод add(), увеличивающий
+     * значение внутренней int переменной на 1. Сделайте так, чтобы с объектом
+     * такого типа можно было работать в блоке try-with-resources. Подумайте, что
+     * должно происходить при закрытии этого ресурса? Напишите метод для
+     * проверки, закрыт ли ресурс. При попытке вызвать add() у закрытого
+     * ресурса, должен выброситься IOException.
      */
 
     public static void main(String[] args) {
 
-        try ( Counter counter1 = new Counter(100)){
+        try (Counter counter1 = new Counter(100)) {
 
             counter1.add();
             counter1.add();
             System.out.printf("Текущее значение счетчика: %d\n", counter1.getCounter());
-        }
-        catch (CloseCounterException e){
+        } catch (CloseCounterException e) {
             System.out.println(e.getMessage());
         }
 
@@ -29,7 +28,7 @@ public class Task2 {
 
 }
 
-class Counter implements AutoCloseable{
+class Counter implements AutoCloseable {
 
     private int counter;
     private boolean isOpen;
@@ -53,7 +52,7 @@ class Counter implements AutoCloseable{
         isOpen = true;
     }
 
-    public void closeCounter(){
+    public void closeCounter() {
         isOpen = false;
     }
 
@@ -63,7 +62,7 @@ class Counter implements AutoCloseable{
     }
 }
 
-class CloseCounterException extends IOException{
+class CloseCounterException extends IOException {
     public CloseCounterException(String message) {
         super(message);
     }

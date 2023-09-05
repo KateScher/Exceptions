@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson3;
+package Seminar3;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,57 +8,49 @@ import java.util.Arrays;
 public class Task1 {
 
     /**
-     *     1.  Создайте класс исключения, который будет выбрасываться при делении на
-     *         0. Исключение должно отображать понятное для пользователя сообщение
-     *         об ошибке.
-     *     2.  Создайте класс исключений, которое будет возникать при обращении к
-     *         пустому элементу в массиве ссылочного типа. Исключение должно
-     *         отображать понятное для пользователя сообщение об ошибке
-     *     3.  Создайте класс исключения, которое будет возникать при попытке открыть
-     *         несуществующий файл. Исключение должно отображать понятное для
-     *         пользователя сообщение об ошибке.
+     * 1. Создайте класс исключения, который будет выбрасываться при делении на
+     * 0. Исключение должно отображать понятное для пользователя сообщение
+     * об ошибке.
+     * 2. Создайте класс исключений, которое будет возникать при обращении к
+     * пустому элементу в массиве ссылочного типа. Исключение должно
+     * отображать понятное для пользователя сообщение об ошибке
+     * 3. Создайте класс исключения, которое будет возникать при попытке открыть
+     * несуществующий файл. Исключение должно отображать понятное для
+     * пользователя сообщение об ошибке.
      *
-     *     4.* Продемонстрировать работу каждого исключения.
+     * 4.* Продемонстрировать работу каждого исключения.
      */
 
     public static void main(String[] args) {
 
         try {
             task1();
-        }
-        catch (DivisionByZeroException e){
+        } catch (DivisionByZeroException e) {
             System.out.println(e.getMessage());
         }
 
-        try
-        {
-            task2(new String[] {"AAA", "BBB", null, "DDD"}, 3);
-        }
-        catch (NullPointerException | ArrayIndexOutOfBoundsException e){
+        try {
+            task2(new String[] { "AAA", "BBB", null, "DDD" }, 3);
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
-        }
-        catch (NullElementArrayException e){
+        } catch (NullElementArrayException e) {
             System.out.printf("%s\nИндекс элемента: %d\n", e.getMessage(), e.getIndex());
         }
 
         try {
             task3("C:/test/task1.java");
-        }
-        catch (MyFileNotFoundException e){
+        } catch (MyFileNotFoundException e) {
             System.out.printf("%s\nНаименование файла: %s\n", e.getMessage(), e.getName());
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
-    static void task1(){
-        try
-        {
+    static void task1() {
+        try {
             int a = 10 / 0;
-        }
-        catch (ArithmeticException e){
+        } catch (ArithmeticException e) {
             throw new DivisionByZeroException("Ошибка деления числа на 0.");
         }
     }
@@ -71,11 +63,12 @@ public class Task1 {
      * @throws NullElementArrayException
      * @throws ArrayIndexOutOfBoundsException
      */
-    static void task2(String[] array, int index) throws NullPointerException, NullElementArrayException, ArrayIndexOutOfBoundsException {
-        if (array == null){
+    static void task2(String[] array, int index)
+            throws NullPointerException, NullElementArrayException, ArrayIndexOutOfBoundsException {
+        if (array == null) {
             throw new NullPointerException("Массив должен существовать.");
         }
-        if (array[index] == null){
+        if (array[index] == null) {
             throw new NullElementArrayException("Элемент массива не проинициализирован", index);
         }
         System.out.printf("Значение элемента массива: %s\n", array[index]);
@@ -83,35 +76,33 @@ public class Task1 {
 
     static void task3(String fileName) throws MyFileNotFoundException, IOException {
 
-        try (FileReader fileReader = new FileReader(fileName))
-        {
+        try (FileReader fileReader = new FileReader(fileName)) {
             // TODO: Логика чтения данных ...
             char[] buf = new char[256];
             int count;
 
-            while ( (count = fileReader.read(buf)) > 0){
+            while ((count = fileReader.read(buf)) > 0) {
                 if (count < buf.length)
                     buf = Arrays.copyOf(buf, count);
-                for (char c: buf) {
+                for (char c : buf) {
                     System.out.print(c);
                 }
             }
-        }
-        catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             throw new MyFileNotFoundException("Файл не найден.", fileName);
         }
     }
 
 }
 
-class DivisionByZeroException extends RuntimeException{
+class DivisionByZeroException extends RuntimeException {
 
     public DivisionByZeroException(String message) {
         super(message);
     }
 }
 
-class NullElementArrayException extends RuntimeException{
+class NullElementArrayException extends RuntimeException {
 
     private final int index;
 
@@ -125,7 +116,7 @@ class NullElementArrayException extends RuntimeException{
     }
 }
 
-class MyFileNotFoundException extends Exception{
+class MyFileNotFoundException extends Exception {
 
     private final String name;
 
