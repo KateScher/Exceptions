@@ -1,12 +1,13 @@
-package ru.geekbrains.lesson2;
+package Seminar2;
 
 import java.util.Scanner;
 
 public class Program {
 
     /**
-     Посмотрите на этот код (main). Все ли с ним хорошо? Если нет, то скорректируйте его и
-     обоснуйте свое решение.
+     * Посмотрите на этот код (main). Все ли с ним хорошо? Если нет, то
+     * скорректируйте его и
+     * обоснуйте свое решение.
      */
     public static void main(String[] args) {
 
@@ -24,11 +25,9 @@ public class Program {
         try {
             int index = new Scanner(System.in).nextInt();
             arr[index] = 1;
-        } catch (Exception e ){
+        } catch (Exception e) {
             System.out.println("Указан индекс за пределами массива.");
         }
     }
-
-
 
 }

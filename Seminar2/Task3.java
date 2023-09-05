@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson2;
+package Seminar2;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,9 +14,12 @@ import java.util.Random;
  * Константин=?
  * Иван=4
  * <p>
- * Реализуйте метод, который считывает данные из файла и сохраняет в двумерный массив (либо HashMap, если
- * студенты с ним знакомы). В отдельном методе нужно будет пройти по структуре данных, если сохранено
- * значение ?, заменить его на соответствующее число. Если на каком-то месте встречается символ, отличный от
+ * Реализуйте метод, который считывает данные из файла и сохраняет в двумерный
+ * массив (либо HashMap, если
+ * студенты с ним знакомы). В отдельном методе нужно будет пройти по структуре
+ * данных, если сохранено
+ * значение ?, заменить его на соответствующее число. Если на каком-то месте
+ * встречается символ, отличный от
  * числа или ?, бросить подходящее исключение.
  */
 public class Task3 {
@@ -28,11 +31,11 @@ public class Task3 {
     }
 
     static void prepareFile() {
-        try (FileWriter fileWriter =new FileWriter("names.txt", false)){
+        try (FileWriter fileWriter = new FileWriter("names.txt", false)) {
             fileWriter.write("Анна=4\n");
             fileWriter.write("Елена=5\n");
             fileWriter.write("Марина=6\n");
-            if (random.nextInt(2) == 0){ //50%
+            if (random.nextInt(2) == 0) { // 50%
                 throw new Exception("Error!");
             }
             fileWriter.write("Владимир=?\n");
@@ -42,8 +45,7 @@ public class Task3 {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

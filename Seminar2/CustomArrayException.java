@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson2;
+package Seminar2;
 
 public abstract class CustomArrayException extends Exception {
 
